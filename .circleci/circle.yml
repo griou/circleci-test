@@ -1,0 +1,20 @@
+version: 2.1
+
+jobs:
+  build: # this can be any name you choose
+    executor: node/default # use the default executor defined within the orb
+    steps:
+      - checkout
+      - exit 1
+  report:
+    executor: node/default
+    steps:
+      - exit 0
+
+
+workflows:
+  build_report: # this can be any name you choose
+  jobs:
+      - build
+      - report:
+          requires: build
